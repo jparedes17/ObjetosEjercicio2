@@ -6,6 +6,7 @@
 package interfaz;
 
 import clases.Fraccionario;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -118,7 +119,7 @@ public class Principal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int op, mix1, mix2, mix3, num1, num2, num3, den1, den2, den3;
-        Fraccionario f1, f2 = null, f3, f4, f5 = null, f6, f7 = null, f8=null, f9 = null;
+        Fraccionario f1, f2 = null, f3, f4, f5 = null, f6, f7 = null, f8=null, f9 = null, f10, f11=null;
         
         op= cmbOperaciones.getSelectedIndex();
         num1= Integer.parseInt(txtNumerador1.getText());
@@ -132,41 +133,60 @@ public class Principal extends javax.swing.JFrame {
         mix1= Integer.parseInt(txtMixto1.getText());
         mix2= Integer.parseInt(txtMixto2.getText());
         
-        
-        f1= new Fraccionario (num1, den1, mix1);
-        f4= new Fraccionario (num2, den2, mix2);
-        
-        switch (op)
+        if (num1>den1 )
         {
-            case 0:
-                f3= f1.convertir(f1);
-                f6= f4.convertir2(f4);
-                f7= f3.suma(f6);
-                f9= f7.convertir3(f7);
-                break;
-            case 1:
-                f3= f1.convertir(f2);
-                f6= f4.convertir2(f4);
-                f7= f3.resta(f6);
-                f9= f7.convertir3(f7);
-                break;
-            case 2:
-                f3= f1.convertir(f1);
-                f6= f4.convertir2(f4);
-                f7= f3.multiplicacion(f6);
-                f9= f7.convertir3(f7);
-                break; 
-            case 3:
-                f3= f1.convertir(f1);
-                f6= f4.convertir2(f4);
-                f7= f3.division(f6);
-                f9= f7.convertir3(f7);
-                break;    
+            JOptionPane.showMessageDialog(this, "Ingrese fraciones con Numerador menor al denominador", "ERROR", JOptionPane.ERROR_MESSAGE);
         }
-        
-        txtNumerador3.setText(""+f9.getNumerador());
-        txtDenominador3.setText(""+f9.getDenominador());
-        txtMixto3.setText(""+f9.getMixto());
+            if (num2>den2)
+            {
+                JOptionPane.showMessageDialog(this, "Ingrese fraciones con Numerador menor al denominador", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        else {
+                f1= new Fraccionario (num1, den1, mix1);
+                f4= new Fraccionario (num2, den2, mix2);
+                
+                switch (op)
+                {
+                    case 0:
+                        f3= f1.convertir(f1);
+                        f6= f4.convertir2(f4);
+                        f7= f3.suma(f6);
+                        f9= f7.convertir3(f7);
+                        break;
+                    case 1:
+                        f3= f1.convertir(f2);
+                        f6= f4.convertir2(f4);
+                        f7= f3.resta(f6);
+                        f9= f7.convertir3(f7);
+                        break;
+                    case 2:
+                        f3= f1.convertir(f1);
+                        f6= f4.convertir2(f4);
+                        f7= f3.multiplicacion(f6);
+                        f9= f7.convertir3(f7);
+                        break;
+                    case 3:
+                        f3= f1.convertir(f1);
+                        f6= f4.convertir2(f4);
+                        f7= f3.division(f6);
+                        f9= f7.convertir3(f7);
+                        break;
+                }
+                
+                txtNumerador3.setText(""+f9.getNumerador());
+                txtDenominador3.setText(""+f9.getDenominador());
+                txtMixto3.setText(""+f9.getMixto());
+                
+                num3= f9.getNumerador();
+                den3= f9.getDenominador();
+                
+                f10= new Fraccionario (num3, den3, 1);
+                f11= f10.convertir4(f9);
+                txtDenominador4.setText(""+f11.getDenominador());
+                txtNumerador4.setText(""+f11.getNumerador());
+                
+            }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
