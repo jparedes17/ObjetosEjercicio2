@@ -15,12 +15,15 @@ public class Fraccionario {
     private int denominador;
     private int mixto;
     
-    public Fraccionario (int numerador, int denominador, int mixto)
+    public Fraccionario (int numerador, int denominador, int mixto) throws DenominadorCeroException
     {
         this.numerador= numerador;
         this.denominador= denominador;
         this.mixto= mixto;
-        
+        if (denominador == 0)
+   {
+       throw new DenominadorCeroException();
+   }
         
     }
 
@@ -48,7 +51,7 @@ public class Fraccionario {
         this.mixto = mixto;
     }
     
-    public Fraccionario convertir (Fraccionario f2)
+    public Fraccionario convertir (Fraccionario f2) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -58,7 +61,7 @@ public class Fraccionario {
         f = new Fraccionario (num, den, mix); 
         return f;
     }
-    public Fraccionario convertir2 (Fraccionario f2)
+    public Fraccionario convertir2 (Fraccionario f2) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -70,7 +73,7 @@ public class Fraccionario {
         return f;
     }
     
-    public Fraccionario suma (Fraccionario f2)
+    public Fraccionario suma (Fraccionario f2) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -82,7 +85,7 @@ public class Fraccionario {
         
     }
     
-    public Fraccionario resta (Fraccionario f3)
+    public Fraccionario resta (Fraccionario f3) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -93,7 +96,7 @@ public class Fraccionario {
         return f;
         
     }
-    public Fraccionario multiplicacion (Fraccionario f3)
+    public Fraccionario multiplicacion (Fraccionario f3) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -105,7 +108,7 @@ public class Fraccionario {
         
     }
     
-    public Fraccionario division (Fraccionario f3)
+    public Fraccionario division (Fraccionario f3) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -117,7 +120,7 @@ public class Fraccionario {
         
     }
     
-    public Fraccionario convertir3 (Fraccionario f7)
+    public Fraccionario convertir3 (Fraccionario f7) throws DenominadorCeroException
     {
         int num, den, mix;
         Fraccionario f;
@@ -131,7 +134,7 @@ public class Fraccionario {
         
     }
     
-    public Fraccionario convertir4 (Fraccionario f3)
+    public Fraccionario convertir4 (Fraccionario f3) throws DenominadorCeroException
     {
        int num, den, mix;
        Fraccionario f;

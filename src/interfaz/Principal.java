@@ -5,6 +5,7 @@
  */
 package interfaz;
 
+import clases.DenominadorCeroException;
 import clases.Fraccionario;
 import javax.swing.JOptionPane;
 
@@ -75,16 +76,22 @@ public class Principal extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 90, 80, 10));
         jPanel1.add(txtMixto2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 40, 40));
+
+        txtNumerador3.setEditable(false);
         jPanel1.add(txtNumerador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 60, 60, -1));
+
+        txtDenominador3.setEditable(false);
         jPanel1.add(txtDenominador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 100, 60, -1));
 
         jSeparator3.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 90, 80, 10));
+
+        txtMixto3.setEditable(false);
         jPanel1.add(txtMixto3, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 70, 40, 40));
 
         cmbOperaciones.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Suma", "Resta", "Multiplicacion", "Division" }));
-        jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, 60, -1));
+        jPanel1.add(cmbOperaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 90, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("=");
@@ -93,11 +100,15 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setText("FRACCION ");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, -1, -1));
+
+        txtNumerador4.setEditable(false);
         jPanel1.add(txtNumerador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 60, -1));
 
         jSeparator4.setBackground(new java.awt.Color(0, 0, 0));
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 80, 10));
+
+        txtDenominador4.setEditable(false);
         jPanel1.add(txtDenominador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 60, -1));
 
         jButton1.setText("Calcular");
@@ -109,6 +120,11 @@ public class Principal extends javax.swing.JFrame {
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, -1, -1));
 
         jButton2.setText("Borrar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, -1, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 400));
@@ -121,6 +137,37 @@ public class Principal extends javax.swing.JFrame {
         int op, mix1, mix2, mix3, num1, num2, num3, den1, den2, den3;
         Fraccionario f1, f2 = null, f3, f4, f5 = null, f6, f7 = null, f8=null, f9 = null, f10, f11=null;
         
+         if (txtNumerador1.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese numerador 1", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtNumerador1.requestFocusInWindow();
+        }
+        else if (txtDenominador1.getText().trim().isEmpty())
+        {
+          JOptionPane.showMessageDialog(this, "Ingrese denominador 1", "ERROR", JOptionPane.ERROR_MESSAGE);
+          txtDenominador1.requestFocusInWindow();
+        }
+        else if (txtNumerador2.getText().trim().isEmpty())
+        {
+          JOptionPane.showMessageDialog(this, "Ingrese numerador 2", "ERROR", JOptionPane.ERROR_MESSAGE);
+          txtNumerador2.requestFocusInWindow();
+        }
+        else if (txtDenominador2.getText().trim().isEmpty())
+        {
+          JOptionPane.showMessageDialog(this, "Ingrese denominador 2", "ERROR", JOptionPane.ERROR_MESSAGE);
+          txtDenominador2.requestFocusInWindow();
+        }
+        else if (txtMixto1.getText().trim().isEmpty())
+        {
+          JOptionPane.showMessageDialog(this, "Ingrese Indice 1", "ERROR", JOptionPane.ERROR_MESSAGE);
+          txtMixto1.requestFocusInWindow();
+        }
+        else if (txtMixto2.getText().trim().isEmpty())
+        {
+            JOptionPane.showMessageDialog(this, "Ingrese Indice 2", "ERROR", JOptionPane.ERROR_MESSAGE);
+            txtMixto2.requestFocusInWindow();
+        }
+        else {
         op= cmbOperaciones.getSelectedIndex();
         num1= Integer.parseInt(txtNumerador1.getText());
         num2= Integer.parseInt(txtNumerador2.getText());
@@ -143,6 +190,7 @@ public class Principal extends javax.swing.JFrame {
             }
             
         else {
+                try{
                 f1= new Fraccionario (num1, den1, mix1);
                 f4= new Fraccionario (num2, den2, mix2);
                 
@@ -186,9 +234,36 @@ public class Principal extends javax.swing.JFrame {
                 txtDenominador4.setText(""+f11.getDenominador());
                 txtNumerador4.setText(""+f11.getNumerador());
                 
+            }catch (DenominadorCeroException e)
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
+            }catch (NumberFormatException e) 
+            {
+                JOptionPane.showMessageDialog(null, e.getMessage(), "ERROR", JOptionPane.ERROR_MESSAGE);
             }
-        
+                
+        }
+                }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        txtDenominador1.setText("");
+        txtDenominador2.setText("");
+        txtDenominador3.setText("");
+        txtDenominador4.setText("");
+        txtMixto1.setText("");
+        txtMixto2.setText("");
+        txtMixto3.setText("");
+        txtNumerador1.setText("");
+        txtNumerador2.setText("");
+        txtNumerador3.setText("");
+        txtNumerador4.setText("");
+        cmbOperaciones.setSelectedIndex(0);
+        
+        txtNumerador1.requestFocusInWindow();
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
